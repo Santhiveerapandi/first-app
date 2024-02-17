@@ -21,6 +21,8 @@ class ExcelUploadController extends Controller
         /* kilobytes 2048 =2MB*100 */
         $request->validate([
             'excelfile' => 'required|file|mimes:csv,xlsx|max:204800',
+        ],[
+            'required'=>'Please Select a Csv File.'
         ]);
         
         $message= "CSV Uploaded/ imported added on queue";

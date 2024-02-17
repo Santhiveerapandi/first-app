@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\AdminController;
 use App\Http\Controllers\VendorPanel\VendorController;
 use App\Http\Controllers\CustomerPanel\CustomerController;
+use App\Http\Controllers\ExcelUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,15 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return config('app.env');
 });
+
+// Route::get('/upload', function() {
+//     return view('uploader.upload');
+// });
+Route::get('/upload', [ExcelUploadController::class, 'Upload'])->name('upload');
+Route::post('/uploadexcel', [ExcelUploadController::class, 'BigExcelUpload'])->name('uploadexcel');
+//->middleware(['auth', 'verified'])->name('dashboard');
+
+
 /* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); */

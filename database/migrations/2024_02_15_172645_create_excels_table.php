@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('excels', function (Blueprint $table) {
             $table->id();
             $table->string('Region', 200)->nullable();
-            $table->string('Country',200);
-            $table->string('ItemType', 200);
+            $table->string('Country',200)->nullable();
+            $table->string('ItemType', 200)->nullable();
             $table->string('SalesChannel',40)->nullable();
             $table->string('OrderPriority',2)->comment("C,H,L,M");
             $table->string('OrderDate')->nullable();
-            $table->bigInteger('OrderID')->unsigned();
+            $table->string('OrderID')->nullable();
             $table->string('ShipDate')->nullable();
             $table->integer('UnitsSold')->unsigned();
             $table->double('UnitPrice')->default(0.0);

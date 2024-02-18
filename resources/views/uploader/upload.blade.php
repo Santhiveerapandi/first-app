@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compitable" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Upload Excel File</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('theme/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css -->
 
 </head>
 <body>
@@ -38,7 +39,13 @@
         </form>
         </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="{{ asset('theme/bootstrap.min.js') }}"></script>
+<!-- Scripts https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js-->
+    <script src="{{ asset('theme/jquery.min.js') }}"></script>
+    <script>
+    $(".btn-primary").click(function() {
+        alert("Thanks");
+    });
+    </script>
 </body>
 </html>

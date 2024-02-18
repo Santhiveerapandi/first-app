@@ -29,21 +29,26 @@ class ExcelUploadController extends Controller
         //File chunk data import into db
         if($request->has('excelfile')){
             $exceldata = file($request->excelfile);
-            $chunks = array_chunk($exceldata, 500);
-            $header = [];
-            $batch = Bus::batch([])->dispatch();
-            foreach ($chunks as $key => $chunk) {
-                $data = array_map('str_getcsv', $chunk);
-                if($key==0){
-                    $header = $data[0];
-                    unset($data[0]);
+            // dd(count($exceldata)); Actual data validation inside excel/csv
+            if(is_array($exceldata) && count($exceldata)>0){
+                $chuncklength=count($exceldata);
+                $chunks = array_chunk($exceldata, (($chuncklength>500)? 500: $chuncklength) );
+                $header = [];
+                $batch = Bus::batch([])->dispatch();
+                foreach ($chunks as $key => $chunk) {
+                    $data = array_map('str_getcsv', $chunk);
+                    if($key==0){
+                        $header = $data[0];
+                        unset($data[0]);
+                    }
+                    // dump($header);
+                    // dd($data);
+                    $batch->add(new ProcessExcel($data, $header));
                 }
-                // dump($header);
-                // dd($data);
-                $batch->add(new ProcessExcel($data, $header));
             }
+            
             //File Upload
-            $path=$request->file('excelfile')->store('Excel');            
+            // $path=$request->file('excelfile')->store('Excel');            
         }
 /* }catch(Exception $ex) {
     throw new Exception($ex->getMessage());

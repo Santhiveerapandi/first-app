@@ -72,6 +72,7 @@
 
 ## Laravel code flow:
 ```
+OS: Windows 11
 composer create-project laravel/laravel first-app
 cd first-app
 php artisan queue:table
@@ -90,4 +91,18 @@ memory_limit=1024m
 post_max_size=300m
 upload_max_file_size=200m
 
+composer require laravel/horizon --ignore-platform-reqs
+php artisan horizon:install
+
+Redis install:
+-------------
+ref: https://github.com/tporadowski/redis/releases
+download redis.msi
+
+redis GUI: 
+----------
+ref:https://www.npmjs.com/package/redis-commander
+
+npm install -g redis-commander
+redis-commander
 ```

@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compitable" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Upload Excel File</title>
-    <link href="{{ asset('theme/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css -->
+<x-guest-layout>
+    @if (Route::has('login'))
+        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+            @else
+                <a href="{{ route('upload') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Upload Big Csv</a>
 
-</head>
-<body>
+                <a href="{{ route('login') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                @endif
+            @endauth
+        </div>
+    @endif
         
         @if($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -29,23 +32,17 @@
         </div>
         @endif
 
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div style="min-height: 5vh;" class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <main>
         <form action="{{ route('uploadexcel') }}" enctype="multipart/form-data" method="post">
             @csrf
 
             <input type="file" class="form-control" name="excelfile" id="excelfile" />
-            <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+            <!-- <input type="submit" class="btn btn-primary" name="submit" value="Submit"> -->
+            <x-primary-button class="ms-4">
+                {{ __('Submit') }}
+            </x-primary-button>
         </form>
         </main>
     </div>
-    <script src="{{ asset('theme/bootstrap.min.js') }}"></script>
-<!-- Scripts https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js-->
-    <script src="{{ asset('theme/jquery.min.js') }}"></script>
-    <script>
-    $(".btn-primary").click(function() {
-        alert("Thanks");
-    });
-    </script>
-</body>
-</html>
+</x-guest-layout>

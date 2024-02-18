@@ -106,3 +106,42 @@ ref:https://www.npmjs.com/package/redis-commander
 npm install -g redis-commander
 redis-commander
 ```
+
+## Jquery implement in laravel vite
+### Using NPM with Laravel Vite:
+#### Install jQuery using npm:
+
+> npm install jquery
+
+#### Import jQuery in your app.js file:
+#### JavaScript
+```
+// resources/js/app.js
+import jQuery from 'jquery';
+window.$ = jQuery;
+```
+#### AI-generated code. Review and use carefully. More info on FAQ.
+#### Include the $ symbol in your Vite configuration file (vite.config.js):
+
+JavaScript
+```
+// vite.config.js
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: ['resources/sass/app.scss', 'resources/js/app.js'],
+            refresh: true,
+        }),
+    ],
+    resolve: {
+        alias: {
+            '$': 'jQuery',
+        },
+    },
+});
+```
+#### AI-generated code. Review and use carefully. More info on FAQ.
+#### This method allows you to manage jQuery using npm and integrate it seamlessly with Laravel Vite.

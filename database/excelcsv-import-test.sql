@@ -3,8 +3,9 @@
  group by region
  order by region
  limit 0,1000000;*/
+
  -- truncate table  firstapp.excels;
- select * from firstapp.excels limit 0, 1000000;
+ select * from firstapp.excels order by id desc limit 0, 1000030;
  select * from  firstapp.job_batches;
  -- truncate table firstapp.job_batches;
  select * from firstapp.jobs limit 0, 3000;

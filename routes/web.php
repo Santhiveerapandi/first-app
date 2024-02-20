@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminPanel\AdminController;
 use App\Http\Controllers\VendorPanel\VendorController;
 use App\Http\Controllers\CustomerPanel\CustomerController;
 use App\Http\Controllers\ExcelUploadController;
+use App\Http\Controllers\RedisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,15 @@ use App\Http\Controllers\ExcelUploadController;
 */
 
 Route::get('/', function () {
+    // \Mail::to('sharmila@cloudrevelinnovation.com')->send(new \App\Mail\SendTestMail());
+    dispatch(new \App\Jobs\SendEmailJob());
     return view('welcome');
 });
 Route::get('/test', function () {
     return config('app.env');
 });
+Route::get('/redis', [RedisController::class, 'index']);
 
-// Route::get('/upload', function() {
-//     return view('uploader.upload');
-// });
 Route::get('/upload', [ExcelUploadController::class, 'Upload'])->name('upload');
 Route::post('/uploadexcel', [ExcelUploadController::class, 'BigExcelUpload'])->name('uploadexcel');
 //->middleware(['auth', 'verified'])->name('dashboard');

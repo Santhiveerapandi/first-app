@@ -119,6 +119,11 @@ redis-commander
 // resources/js/app.js
 import jQuery from 'jquery';
 window.$ = jQuery;
+
+//write jquery here example
+window.$('.btn-csvimport').click(function() {
+    alert('thanks');
+})
 ```
 #### AI-generated code. Review and use carefully. More info on FAQ.
 #### Include the $ symbol in your Vite configuration file (vite.config.js):
@@ -145,3 +150,40 @@ export default defineConfig({
 ```
 #### AI-generated code. Review and use carefully. More info on FAQ.
 #### This method allows you to manage jQuery using npm and integrate it seamlessly with Laravel Vite.
+
+## Redis + Laravel
+```
+composer require predis/predis --ignore-platform-reqs
+//config/database.php
+'redis' => [
+        'client' => env('REDIS_CLIENT', 'predis'),
+]
+
+//redis GUI: 
+redis-commander
+
+//Queue_connection set as redis
+//.env file
+QUEUE_CONNECTION=redis
+
+//Email Template creation
+php artisan make:mail SendTestMail --markdown=emails.testmail
+//use web.php
+Route::get('/', function () {
+     \Mail::to('sharmila@cloudrevelinnovation.com')->send(new \App\Mail\SendTestMail());
+     return view('welcome');
+});
+
+//Make Email Job
+php artisan make:job SendEmailJob
+
+public function handle(): void
+{
+    \Mail::to('sharmiladevi@cloudrevelinnovation.com')->send(new \App\Mail\SendTestMail());
+}
+//use web.php
+Route::get('/', function () {
+     dispatch(new \App\Jobs\SendEmailJob());
+     return view('welcome');
+});
+```

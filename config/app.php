@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
 
 return [
@@ -183,6 +184,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Redis' => \Illuminate\Support\Facades\Redis::class
     ])->toArray(),
 
 ];

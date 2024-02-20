@@ -9,3 +9,7 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 
 Alpine.start();
+
+window.$('.btn-csvimport').click(function() {
+    alert('thanks');
+})

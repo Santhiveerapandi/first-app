@@ -34,12 +34,12 @@
 
     <div style="min-height: 5vh;" class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <main>
-        <form action="{{ route('uploadexcel') }}" enctype="multipart/form-data" method="post">
+        <form id="csvimportform" action="{{ route('uploadexcel') }}" enctype="multipart/form-data" method="post">
             @csrf
 
             <input type="file" class="form-control" name="excelfile" id="excelfile" />
             <!-- <input type="submit" class="btn btn-primary" name="submit" value="Submit"> -->
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 btn btn-primary btn-csvimport" name="submit" >
                 {{ __('Submit') }}
             </x-primary-button>
         </form>
